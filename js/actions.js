@@ -30,23 +30,22 @@ function accion(obj){
 
 var watchID = null;
 function iniciar(p){
-    if (watchID)
-        if (p=='acelerometro')
-            watchID = navigator.accelerometer.watchAcceleration(function(acceleration) {
-        $('#'+p+' h2').html('X: '+ acceleration.x + '<br>'+
-                            'Y: '+ acceleration.y +'<br>'+
-                            'Z: '+ acceleration.z);
-        }, function(){
-            alert('Error en el acelerómetro');
-        }, {frequency: 500});
-        else if (p=='brujula')
-            watchID = navigator.compass.watchHeading(function(heading) {
-                $('#'+p+' h2').html('Magnética: '+ heading.magneticHeading + '<br>'+
-                            'Digital: '+ heading.trueHeading +'<br>'+
-                            'Desviación actual: '+ heading.headingAccuracy);
-            }, function onError(compassError) {
-                alert('Error en la brujula: ' + compassError.code);
-            }, {frequency: 500});   
+    if (p=='acelerometro')
+        watchID = navigator.accelerometer.watchAcceleration(function(acceleration) {
+    $('#'+p+' h2').html('X: '+ acceleration.x + '<br>'+
+                        'Y: '+ acceleration.y +'<br>'+
+                        'Z: '+ acceleration.z);
+    }, function(){
+        alert('Error en el acelerómetro');
+    }, {frequency: 500});
+    else if (p=='brujula')
+        watchID = navigator.compass.watchHeading(function(heading) {
+            $('#'+p+' h2').html('Magnética: '+ heading.magneticHeading + '<br>'+
+                        'Digital: '+ heading.trueHeading +'<br>'+
+                        'Desviación actual: '+ heading.headingAccuracy);
+        }, function(compassError) {
+            alert('Error en la brujula: ' + compassError.code);
+        }, {frequency: 500});   
     
 }
 
