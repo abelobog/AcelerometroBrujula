@@ -22,7 +22,6 @@ function accion(obj){
 }
 
 function iniciar(p){
-	//if(wathID){
 		if(p=='acelerometro'){
 			watchID = navigator.accelerometer.watchAcceleration(function(acceleration){
 				$('#'+p+' h2').html('X: '+acceleration.x+'<br>'+
@@ -42,7 +41,6 @@ function iniciar(p){
 				},{ frequency: 500 });
 			}
 		}
-	//}
 }
 
 function detener(p){
