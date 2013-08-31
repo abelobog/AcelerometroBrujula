@@ -8,6 +8,7 @@ $(document).ready(function(){
     
 });*/
 //Es lo mismo que la linea anterior
+var watchID = null;
 $(function(){
     document.addEventListener("deviceready",function(){
         $('ul.individual li').tap(function(){accion($(this));
@@ -15,7 +16,6 @@ $(function(){
     });
         
     },false);
-    
 });
 
 function accion(obj){
@@ -28,7 +28,6 @@ function accion(obj){
         detener(p);    
 }
 
-var watchID = null;
 function iniciar(p){
     if (p=='acelerometro'){
             watchID = navigator.accelerometer.watchAcceleration(function(acceleration) {
@@ -43,9 +42,9 @@ function iniciar(p){
         if (p=='brujula') {
             watchID = navigator.compass.watchHeading(function(heading) {
                 $('#'+p+' h2').html('Magnética: '+ heading.magneticHeading + '<br>'+
-                            'Digital: '+ heading.trueHeading +'<br>'+
+                            'Real: '+ heading.trueHeading +'<br>'+
                             'Precisión: '+ heading.headingAccuracy);
-            }, function(compassError) {
+            }, function onError(compassError) {
                 alert('Error en la brujula: ' + compassError.code);
             }, {frequency: 500});
         }
